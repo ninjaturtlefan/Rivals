@@ -28,7 +28,6 @@ if game.PlaceId == rivals.gameId then
         visuals = hubWindow:AddTab({ Title = "Visuals", Icon = "person-standing" }),
         aimbot = hubWindow:AddTab({ Title = "Aimbot", Icon = "target" }),
         exploits = hubWindow:AddTab({ Title = "Exploits", Icon = "bug" }),
-        miscs = hubWindow:AddTab({ Title = "Miscs", Icon = "blocks" }),
         colours = hubWindow:AddTab({ Title = "Colours", Icon = "palette" }),
         settings = hubWindow:AddTab({ Title = "Settings", Icon = "settings" }),
     }
@@ -70,8 +69,8 @@ if game.PlaceId == rivals.gameId then
         local e_skeletonThicknessSlider = enemiesSection:AddSlider("EnemySkeletonThickness",
         {
             Title = "Skeleton Thickness (px)",
-            Default = 2,
-            Min = 0,
+            Default = 3,
+            Min = 2,
             Max = 5,
             Rounding = 1,
             Callback = function(Value)
@@ -105,7 +104,7 @@ if game.PlaceId == rivals.gameId then
             end
         })
         --// Box Style Dropdown
-        local e_boxStyleDropdown = combatSection:AddDropdown("EnemyBoxStyle",
+        local e_boxStyleDropdown = enemiesSection:AddDropdown("EnemyBoxStyle",
         {
             Title = "Box Style",
             Values = {"2D Default", "2D Corner", "2D Bounding"},
@@ -300,7 +299,7 @@ if game.PlaceId == rivals.gameId then
         --// Gadget ESP Text Size Slider
         local t_textSizeSlider = gadgetSection:AddSlider("GadgetEspTextSize",
         {
-            Title = "Text Size",
+            Title = "Text Size (px)",
             Default = 9,
             Min = 1,
             Max = 33,
@@ -310,9 +309,9 @@ if game.PlaceId == rivals.gameId then
             end
         })
         ----// Local Section
-        local localSection = tabs.combat:AddSection("Local")
+        local localSection = tabs.visuals:AddSection("Local")
         --// Fov Changer Toggle
-        local fovChangerToggle = visualsSection:AddToggle("FovChanger",
+        local fovChangerToggle = localSection:AddToggle("FovChanger",
         {
             Title = "Fov Changer",
             Default = false,
@@ -325,19 +324,19 @@ if game.PlaceId == rivals.gameId then
             end
         })
         --// Desired FOV Slider
-        local desiredFovSlider = visualsSection:AddSlider("DesiredFov",
+        local desiredFovSlider = localSection:AddSlider("DesiredFov",
         {
-            Title = "Fov Changer",
+            Title = "Desired FOV (°)",
             Default = 0,
-            Min = -200,
-            Max = 200,
+            Min = -100,
+            Max = 300,
             Rounding = 1,
             Callback = function(Value)
 
             end
         })
         --// Third Person Toggle
-        local thirdPersonToggle = visualsSection:AddToggle("ThirdPerson",
+        local thirdPersonToggle = localSection:AddToggle("ThirdPerson",
         {
             Title = "Third Person",
             Default = false,
@@ -350,7 +349,7 @@ if game.PlaceId == rivals.gameId then
             end
         })
         --// Cam Distance Slider
-        local camDistanceSlider = visualsSection:AddSlider("CamDistance",
+        local camDistanceSlider = localSection:AddSlider("CamDistance",
         {
             Title = "Cam Distance (m)",
             Default = 0,
@@ -362,7 +361,7 @@ if game.PlaceId == rivals.gameId then
             end
         })
         --// Third Person Keybind
-        local thirdPersonKeybind = combatSection:AddKeybind("ThirdPersonHotkey",
+        local thirdPersonKeybind = localSection:AddKeybind("ThirdPersonHotkey",
         {
             Title = "Third Person Hotkey",
             Mode = "Toggle",
@@ -373,7 +372,7 @@ if game.PlaceId == rivals.gameId then
             end
         })
         --//  No Smoke Toggle
-        local noSmokeToggle = visualsSection:AddToggle("NoSmoke",
+        local noSmokeToggle = localSection:AddToggle("NoSmoke",
         {
             Title = "No Smoke",
             Default = false,
@@ -386,7 +385,7 @@ if game.PlaceId == rivals.gameId then
             end
         })
         --// No Flash Toggle
-        local noFlashToggle = visualsSection:AddToggle("NoFlash",
+        local noFlashToggle = localSection:AddToggle("NoFlash",
         {
             Title = "No Flash",
             Default = false,
@@ -399,7 +398,7 @@ if game.PlaceId == rivals.gameId then
             end
         })
         --// No Hud Toggle
-        local noHudToggle = visualsSection:AddToggle("NoHud",
+        local noHudToggle = localSection:AddToggle("NoHud",
         {
             Title = "No Hud",
             Default = false,
@@ -412,7 +411,7 @@ if game.PlaceId == rivals.gameId then
             end
         })
         --// No Model Toggle
-        local noModelToggle = visualsSection:AddToggle("NoModel",
+        local noModelToggle = localSection:AddToggle("NoModel",
         {
             Title = "No Model",
             Default = false,
@@ -425,7 +424,7 @@ if game.PlaceId == rivals.gameId then
             end
         })
         --// No Sky Toggle
-        local noSkyToggle = visualsSection:AddToggle("NoSky",
+        local noSkyToggle = localSection:AddToggle("NoSky",
         {
             Title = "No Sky",
             Default = false,
@@ -438,7 +437,7 @@ if game.PlaceId == rivals.gameId then
             end
         })
         --// Hide Light Toggle
-        local hideLightToggle = visualsSection:AddToggle("HideLight",
+        local hideLightToggle = localSection:AddToggle("HideLight",
         {
             Title = "Hide Light",
             Default = false,
@@ -451,7 +450,7 @@ if game.PlaceId == rivals.gameId then
             end
         })
         --// Change Skybox Colour Toggle
-        local changeSkyboxColourToggle = visualsSection:AddToggle("ChangeSkyboxColour",
+        local changeSkyboxColourToggle = localSection:AddToggle("ChangeSkyboxColour",
         {
             Title = "Change Skybox Colour",
             Default = false,
@@ -464,7 +463,7 @@ if game.PlaceId == rivals.gameId then
             end
         })
         --// Skybox Alpha Slider
-        local skyboxAlphaSlider = visualsSection:AddSlider("SkyboxAlpha",
+        local skyboxAlphaSlider = localSection:AddSlider("SkyboxAlpha",
         {
             Title = "Skybox Alpha",
             Default = 0,
@@ -475,12 +474,12 @@ if game.PlaceId == rivals.gameId then
 
             end
         })
-        ----// World Section
-        local localSection = tabs.combat:AddSection("Local")
-        --// Fov Changer Toggle
-        local fovChangerToggle = visualsSection:AddToggle("FovChanger",
+        ----// Hit Effects Section
+        local hitEffectsSection = tabs.visuals:AddSection("Hit Effects")
+        --// Hit Sounds Toggle
+        local hitSoundsToggle = hitEffectsSection:AddToggle("HitSounds",
         {
-            Title = "Fov Changer",
+            Title = "Hit Sounds",
             Default = false,
             Callback = function(state)
                 if state then
@@ -488,16 +487,79 @@ if game.PlaceId == rivals.gameId then
                 else
                    -- silent aim off in loop
                 end
+            end
+        })
+        --// Bullet Tracers Colourpicker
+        local bulletTracersColourpicker = hitEffectsSection:AddColorpicker("BulletTracerColour",
+        {
+            Title = "Bullet Tracers",
+            Transparency = 0,
+            Default = Color3.fromRGB(0, 0, 0)
+        })
+        --// No Hitmarker Toggle
+        local noHitmarkerToggle = hitEffectsSection:AddToggle("HitMarker",
+        {
+            Title = "Hit Marker",
+            Default = false,
+            Callback = function(state)
+                if state then
+                   -- silent aim on in loop
+                else
+                   -- silent aim off in loop
+                end
+            end
+        })
+        --// Tracer Thickness Slider
+        local tracerThicknessSlider = hitEffectsSection:AddSlider("TracerThickness",
+        {
+            Title = "Tracer Thickness",
+            Default = 2,
+            Min = 1,
+            Max = 5,
+            Rounding = 1,
+            Callback = function(Value)
+
+            end
+        })
+        --// Volume Slider
+        local hitVolumeSlider = hitEffectsSection:AddSlider("HitVolume",
+        {
+            Title = "Hit Volume",
+            Default = 0.4,
+            Min = 0,
+            Max = 2,
+            Rounding = 1,
+            Callback = function(Value)
+
             end
         })
 
-        ------// COMBAT TAB
-        ----// Combat Section
-        local combatSection = tabs.combat:AddSection("Combat")
-        --// Silent Aim Toggle
-        local silentAimToggle = combatSection:AddToggle("SilentAim",
+        --[[
+ 
+
+
+
+
+
+        
+
+        HIT SOUND DROPDOWN
+
+
+
+
+
+
+
+
+        ]]
+
+        ----// World Section
+        local worldSection = tabs.visuals:AddSection("World")
+        --// Chage World Colour Toggle
+        local changeWorldColourToggle = worldSection:AddToggle("WorldColour",
         {
-            Title = "Silent Aim",
+            Title = "Change World Colour",
             Default = false,
             Callback = function(state)
                 if state then
@@ -507,10 +569,23 @@ if game.PlaceId == rivals.gameId then
                 end
             end
         })
-        --// Silent Hit Chance Slider
-        local silentHitChanceSlider = combatSection:AddSlider("SilentHitChance",
+        --// Rainbow World Colour Toggle
+        local changeWorldColourToggle = worldSection:AddToggle("RainbowWorldColour",
         {
-            Title = "Silent Hit Chance",
+            Title = "Rainbow World Colour",
+            Default = false,
+            Callback = function(state)
+                if state then
+                   -- silent aim on in loop
+                else
+                   -- silent aim off in loop
+                end
+            end
+        })
+        --// Colour Intensity Slider
+        local colourIntensitySlider = worldSection:AddSlider("ColourIntensity",
+        {
+            Title = "Colour Intensity",
             Default = 0,
             Min = 0,
             Max = 100,
@@ -519,121 +594,78 @@ if game.PlaceId == rivals.gameId then
                 -- interact with the silent aim DONE IN %
             end
         })
-        --// Silent Aim Radius Slider
-        local silentAimRadiusSlider = combatSection:AddSlider("SilentAimRadius",
+        --// Skybox Intensity Slider
+        local skyboxIntensitySlider = worldSection:AddSlider("SkyboxIntensity",
         {
-            Title = "Silent Aim Radius",
-            Default = 0,
-            Min = 0,
-            Max = 1000,
-            Rounding = 1,
-            Callback = function(Value)
-                -- interact with the silent aim fov radius DONE IN PIXELS
-            end
-        })
-        --// Visualize FOV Toggle
-        local visualizeFovToggle = combatSection:AddToggle("VisualizeFOV",
-        {
-            Title = "Visualize FOV",
-            Default = false,
-            Callback = function(state)
-                if state then
-                    -- Visualize FOV on
-                else
-                    -- Visualize FOV off
-                end
-            end
-        })
-        --// FOV Colourpicker
-        local fovColourpicker = combatSection:AddColorpicker("FOVColourPicker",
-        {
-            Title = "FOV Colourpicker",
-            Transparency = 0,
-            Default = Color3.fromRGB(0, 214, 39)
-        })
-        --[[fovColourpicker:OnChanged(function()
-            print(
-                "TColorpicker changed:", TColorpicker.Value,
-                "Transparency:", TColorpicker.Transparency
-            )
-        end)]]
-        --// Closest Position
-        local closestPositionToggle = combatSection:AddToggle("ClosestPosition",
-        {
-            Title = "Closest Position",
-            Default = false,
-            Callback = function(state)
-                if state then
-                    -- Closest Position is on
-                else
-                    -- Closest Position is off
-                end
-            end
-        })
-        --// Aimbot Toggle
-        local aimbotToggle = combatSection:AddToggle("Aimbot",
-        {
-            Title = "Aimbot",
-            Default = false,
-            Callback = function(state)
-                if state then
-                    -- aimbot on in loop
-                else
-                    -- aimbot off in loop
-                end
-            end
-        })
-        --// Aimbot Keybind
-        local aimbotKeybind = combatSection:AddKeybind("AimbotKeybind",
-        {
-            Title = "Aimbot Keybind",
-            Mode = "Hold",
-            Default = "MB1",
-
-            Callback = function(Value)
-                -- Put aimbot logic here
-            end
-        })
-        --// Aimbot Smoothing Slider
-        local aimbotSmoothingSlider = combatSection:AddSlider("AimbotSmoothing",
-        {
-            Title = "Aimbot Smoothing",
+            Title = "Skybox Intensity",
             Default = 0,
             Min = 0,
             Max = 100,
             Rounding = 1,
             Callback = function(Value)
-                -- interact with the aimbot DONE IN %
+                -- interact with the silent aim DONE IN %
             end
         })
-        --// Visible Check Toggle
-        local visibleCheckToggle = combatSection:AddToggle("VisibleCheck",
+        ------// AIMBOT
+        ----// Ragebot Section
+        local ragebotSection = tabs.aimbot:AddSection("Ragebot")
+        --// Enable Ragebot Toggle
+        local enableRagebotToggle = ragebotSection:AddToggle("EnableRagebot",
         {
-            Title = "Visible Check",
+            Title = "Enable Ragebot",
             Default = false,
             Callback = function(state)
                 if state then
-                    -- visible Check on
+                   -- silent aim on in loop
                 else
-                    -- visible Check off
+                   -- silent aim off in loop
                 end
             end
         })
+        --// Rage Type Dropdown
+        local rageMethodDropdown = ragebotSection:AddDropdown("RageMethod",
+        {
+            Title = "Rage Method",
+            Values = {"Player Detection","Backstab (checks for knife)"},
+            Multi = false,
+            Default = 1,
+        })
+        --// Ragebot Weapon Dropdown
+        local ragebotWeaponDropdown = ragebotSection:AddDropdown("RagebotWeapon",
+        {
+            Title = "Ragebot Weapon",
+            Values = {"Primary", "Secondary"},
+            Multi = false,
+            Default = 1,
+        })
         --// Manipulation Toggle
-        local manipulationToggle = combatSection:AddToggle("Manipulation",
+        local manipulationToggle = ragebotSection:AddToggle("Manipulation",
         {
             Title = "Manipulation",
             Default = false,
             Callback = function(state)
                 if state then
-                    -- manipulation on
+                   -- silent aim on in loop
                 else
-                    -- manipulation off
+                   -- silent aim off in loop
+                end
+            end
+        })
+        --// Projectile Teleport Toggle
+        local projectileTeleportToggle = ragebotSection:AddToggle("ProjectileTeleport",
+        {
+            Title = "Project Teleport",
+            Default = false,
+            Callback = function(state)
+                if state then
+                   -- silent aim on in loop
+                else
+                   -- silent aim off in loop
                 end
             end
         })
         --// Triggerbot Toggle
-        local triggerbotToggle = combatSection:AddToggle("Triggerbot",
+        local triggerbotToggle = ragebotSection:AddToggle("Triggerbot",
         {
             Title = "Triggerbot",
             Default = false,
@@ -645,70 +677,260 @@ if game.PlaceId == rivals.gameId then
                 end
             end
         })
-        --// Triggerbot Delay Slider
-        local triggerbotDelaySlider = combatSection:AddSlider("TriggerbotDelay",
+        --// Swap Weapon On Reload Toggle
+        local swapWeaponOnReloadToggle = ragebotSection:AddToggle("SwapWeaponOnReload",
         {
-            Title = "Triggerbot Delay",
+            Title = "Swap Weapon On Reload",
+            Default = false,
+            Callback = function(state)
+                if state then
+                -- triggerbot on
+                else
+                -- triggerbot off
+                end
+            end
+        })
+        --// Rainbow Coloured Tracer Toggle
+        local rainbowColouredTracerToggle = ragebotSection:AddToggle("RainbowColouredTracer",
+        {
+            Title = "Rainbow Coloured Tracer",
+            Default = false,
+            Callback = function(state)
+                if state then
+                -- triggerbot on
+                else
+                -- triggerbot off
+                end
+            end
+        })
+        --// Triggerbot Delay Slider
+        local triggerbotDelaySlider = ragebotSection:AddSlider("TriggerbotDelay",
+        {
+            Title = "Triggerbot Delay (ms)",
             Default = 0,
             Min = 0,
-            Max = 3000,
+            Max = 100,
             Rounding = 1,
             Callback = function(Value)
-                -- interact with the aimbot DONE IN MS
+                -- interact with the silent aim DONE IN %
+            end
+        })
+        ----// Legitbot Section
+        local legitbotSection = tabs.aimbot:AddSection("Legitbot (Silent)")
+        --// Emable Legitbot Toggle
+        local enableLegitbotToggle = legitbotSection:AddToggle("EnableLegitbot",
+        {
+            Title = "Enable",
+            Default = false,
+            Callback = function(state)
+                if state then
+                   -- silent aim on in loop
+                else
+                   -- silent aim off in loop
+                end
+            end
+        })
+        --// Visualize FOV Toggle
+        local visualizeFovToggle = legitbotSection:AddToggle("VisualizeFov",
+        {
+            Title = "Visualize FOV",
+            Default = false,
+            Callback = function(state)
+                if state then
+                   -- silent aim on in loop
+                else
+                   -- silent aim off in loop
+                end
+            end
+        })
+        --// FOV Colourpicker
+        local fovColourpicker = legitbotSection:AddColorpicker("FovColourpicker",
+        {
+            Title = "FOV Colourpicker",
+            Transparency = 0,
+            Default = Color3.fromRGB(0, 200, 100)
+        })
+        --// Closest Position Toggle
+        local closestPositionToggle = legitbotSection:AddToggle("ClosestPosition",
+        {
+            Title = "Closest Position",
+            Default = false,
+            Callback = function(state)
+                if state then
+                   -- silent aim on in loop
+                else
+                   -- silent aim off in loop
+                end
+            end
+        })
+        --// Visible Check Toggle
+        local visibleCheckToggle = legitbotSection:AddToggle("VisibleCheck",
+        {
+            Title = "Visible Check",
+            Default = false,
+            Callback = function(state)
+                if state then
+                   -- silent aim on in loop
+                else
+                   -- silent aim off in loop
+                end
+            end
+        })
+        --// Team Check Toggle
+        local teamCheckToggle = legitbotSection:AddToggle("TeamCheck",
+        {
+            Title = "Team Check",
+            Default = false,
+            Callback = function(state)
+                if state then
+                   -- silent aim on in loop
+                else
+                   -- silent aim off in loop
+                end
+            end
+        })
+        --// Legitbot Hit Chance Slider
+        local legitbotHitChanceSlider = legitbotSection:AddSlider("LegitbotHitChance",
+        {
+            Title = "Legitbot Hit Chance (%)",
+            Default = 0,
+            Min = 0,
+            Max = 100,
+            Rounding = 1,
+            Callback = function(Value)
+                -- interact with the silent aim DONE IN %
+            end
+        })
+        --// Legitbot Aim Radius Slider
+        local legitbotAimRadiusSlider = legitbotSection:AddSlider("LegitbotAimRadius",
+        {
+            Title = "Legitbot Aim Radius (px)",
+            Default = 0,
+            Min = 0,
+            Max = 100,
+            Rounding = 1,
+            Callback = function(Value)
+                -- interact with the silent aim DONE IN %
             end
         })
         --// Closest Position Whitelist Multidropdown
-        local closestPosWhitelistDropdown = combatSection:AddDropdown("CloestPosWhitelist",
+        local closestPosWhitelistDropdown = legitbotSection:AddDropdown("CloestPosWhitelist",
         {
             Title = "Closest Position Whitelist",
-            Values = {"Insert","Body","Parts","Here"},
+            Values = {"Head","UpperTorso","LowerTorso","LeftFoot","LeftLowerLeg","LeftUpperLeg","RightFoot","RightLowerLeg","RightUpperLeg","LeftHand","LeftLowerArm","LeftUpperArm","RightHand","RightHand","RightLowerArm","RightUpperArm","HumanoidRootPart"},
             Multi = true,
-            Default = {"Insert","Body","Parts","Here"},
+            Default = {"Head","UpperTorso","LowerTorso","LeftFoot","LeftLowerLeg","LeftUpperLeg","RightFoot","RightLowerLeg","RightUpperLeg","LeftHand","LeftLowerArm","LeftUpperArm","RightHand","RightHand","RightLowerArm","RightUpperArm","HumanoidRootPart"},
         })
-        --// Target Part Dropdown
-        local targetPartDropdown = combatSection:AddDropdown("TargetPart",
+        --//  Target Part Dropdown
+        local targetPartDropdown = legitbotSection:AddDropdown("TargetPart",
         {
             Title = "Target Part",
-            Values = {"Insert","Body","Parts","Here"},
+            Values = {"Head","UpperTorso","LowerTorso","LeftFoot","LeftLowerLeg","LeftUpperLeg","RightFoot","RightLowerLeg","RightUpperLeg","LeftHand","LeftLowerArm","LeftUpperArm","RightHand","RightHand","RightLowerArm","RightUpperArm","HumanoidRootPart"},
             Multi = false,
             Default = 1,
         })
-        ----// Gun Mods Section
-        local gunModsSection = tabs.combat:AddSection("Gun Mods")
-        --// Recoil Adjustment Slider
-        local recoilAdjustmentSlider = gunModsSection:AddSlider("RecoilAdjustment",
+        
+        ----// Misc Section
+        local miscSection = tabs.exploits:AddSection("Misc")
+        --// Fly Toggle
+        local flyToggle = miscSection:AddToggle("Fly",
         {
-            Title = "Recoil Adjustment",
-            Default = 100,
-            Min = 0,
-            Max = 100,
-            Rounding = 1,
-            Callback = function(Value)
-                -- interact with the recoil DONE IN %
+            Title = "Fly",
+            Default = false,
+            Callback = function(state)
+                if state then
+                   -- silent aim on in loop
+                else
+                   -- silent aim off in loop
+                end
             end
         })
-        --// Spread Adjustment Slider
-        local spreadAdjustmentSlider = gunModsSection:AddSlider("SpreadAdjustment",
+        --// Fly Speed Slider
+        local flySpeedSlider = miscSection:AddSlider("FlySpeed",
         {
-            Title = "Spread Adjustment",
-            Default = 100,
-            Min = 0,
+            Title = "Fly Speed",
+            Default = 16,
+            Min = 1,
             Max = 100,
             Rounding = 1,
             Callback = function(Value)
-                -- interact with the spread DONE IN %
+
             end
         })
-        --// Fire Rate Cooldown Slider
-        local fireRateCooldownSlider = gunModsSection:AddSlider("FireRateCooldown",
+        --// Noclip Toggle
+        local noclipToggle = miscSection:AddToggle("Noclip",
         {
-            Title = "Fire Rate Cooldown",
-            Default = 100,
-            Min = 0,
+            Title = "Noclip",
+            Default = false,
+            Callback = function(state)
+                if state then
+                   -- silent aim on in loop
+                else
+                   -- silent aim off in loop
+                end
+            end
+        })
+        --// Noclip Keybind
+        local noclipKeybind = miscSection:AddKeybind("NoclipKeybind",
+        {
+            Title = "Noclip Keybind",
+            Mode = "Toggle",
+            Default = "Z",
+
+            Callback = function(Value)
+                -- Put aimbot logic here
+            end
+        })
+        ----// Movement Section
+        local movementSection = tabs.exploits:AddSection("Movement")
+        --//  slideMultiplerToggle
+        local slideMultiplerToggle = movementSection:AddToggle("SlideMultipler",
+        {
+            Title = "Slide Multipler",
+            Default = false,
+            Callback = function(state)
+                if state then
+                   -- silent aim on in loop
+                else
+                   -- silent aim off in loop
+                end
+            end
+        })
+        --// Fly Speed Slider
+        local flySpeedSlider = movementSection:AddSlider("FlySpeed",
+        {
+            Title = "Fly Speed",
+            Default = 0,
+            Min = 1,
             Max = 100,
             Rounding = 1,
             Callback = function(Value)
-                -- interact with the fire rate DONE IN %
+
+            end
+        })
+        --//  Run and Shoot Toggle
+        local runAndShootToggle = movementSection:AddToggle("RunAndShoot",
+        {
+            Title = "Run and Shoot",
+            Default = false,
+            Callback = function(state)
+                if state then
+                   -- silent aim on in loop
+                else
+                   -- silent aim off in loop
+                end
+            end
+        })
+        --// Fly Speed Slider
+        local flySpeedSlider = movementSection:AddSlider("FlySpeed",
+        {
+            Title = "Fly Speed",
+            Default = 16,
+            Min = 1,
+            Max = 100,
+            Rounding = 1,
+            Callback = function(Value)
+
             end
         })
 
@@ -731,7 +953,20 @@ if game.PlaceId == rivals.gameId then
         lib:Notify({
             Title = "Glorp Notification",
             Content = "Loaded Glorp | Rivals "..rivals.v,
-            Duration = 8
+            Duration = 15
+        })
+        ----// Update Announcement
+        hubWindow:Dialog({
+            Title = "📢 Glorp Dev Build | Rivals "..rivals.v.." 📢",
+            Content = "Visuals Window + v1.0.0 Content | Aimbot Window + v1.0.0 Content | Exploits Window + v1.0.0 Content | Colours Window & v1.0.0 Content | Settings Window + v1.0.0 Content",
+            Buttons = {
+                { 
+                    Title = "Cheer the devs!",
+                    Callback = function()
+
+                    end 
+                }
+            }
         })
     end
 end
